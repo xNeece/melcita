@@ -1,0 +1,2405 @@
+/* ============================================
+ *  VARIABLES
+ = *=========================================== */
+
+:root {
+
+    --pink-light: #fdf0f4;
+    --pink: #efc7d5;
+    --pink-dark: #c989a2;
+
+    --cream: #fffaf0;
+    --cream-dark: #f4ead7;
+
+    --yellow: #f5df9c;
+    --yellow-dark: #d5b95f;
+
+    --green: #c9ddc1;
+    --green-dark: #789b75;
+
+    --brown: #795b55;
+    --brown-dark: #4f3a38;
+
+    --text: #63514e;
+
+    --shadow: rgba(95, 64, 67, 0.20);
+
+}
+
+
+/* ============================================
+ *  RESET
+ = *=========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family: "Quicksand", sans-serif;
+
+    color: var(--text);
+
+    background:
+    radial-gradient(
+        circle at 20% 20%,
+        rgba(255,255,255,.8),
+                    transparent 30%
+    ),
+    radial-gradient(
+        circle at 80% 70%,
+        rgba(239,199,213,.35),
+                    transparent 35%
+    ),
+    linear-gradient(
+        135deg,
+        #fceef2,
+        #fff9ed,
+        #f3e7dc
+    );
+
+    overflow-x: hidden;
+
+}
+
+
+/* ============================================
+ *  UTILIDADES
+ = *=========================================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ============================================
+ *  PANTALLA INICIAL
+ = *=========================================== */
+
+.opening-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+    radial-gradient(
+        circle at center,
+        #fffaf1 0%,
+        #fbe7ee 55%,
+        #efd5df 100%
+    );
+
+    transition:
+    opacity 1s ease,
+    visibility 1s ease;
+
+}
+
+
+.opening-screen.fade-out {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+
+.opening-content {
+
+    position: relative;
+
+    z-index: 3;
+
+    width: min(90%, 650px);
+
+}
+
+
+.tiny-tulip {
+
+    font-size: 3rem;
+
+    animation:
+    floatingFlower 3s ease-in-out infinite;
+
+}
+
+
+.small-opening {
+
+    margin-top: 10px;
+
+    font-size: .95rem;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: var(--pink-dark);
+
+}
+
+
+.opening-content h1 {
+
+    margin-top: 12px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(4rem, 10vw, 7rem);
+
+    font-weight: 600;
+
+    color: var(--brown-dark);
+
+    letter-spacing: 2px;
+
+}
+
+
+.nicknames {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1.5rem;
+
+    color: var(--pink-dark);
+
+}
+
+
+.opening-hint {
+
+    margin-top: 20px;
+
+    font-size: .8rem;
+
+    opacity: .65;
+
+}
+
+
+/* ============================================
+ *  REGALO
+ = *=========================================== */
+
+.gift-container {
+
+    position: relative;
+
+    width: 210px;
+
+    height: 190px;
+
+    margin: 35px auto 25px;
+
+}
+
+
+.gift-glow {
+
+    position: absolute;
+
+    inset: 15px;
+
+    background: rgba(245,223,156,.55);
+
+    filter: blur(35px);
+
+    border-radius: 50%;
+
+    animation: giftGlow 2.5s ease-in-out infinite;
+
+}
+
+
+.gift-box {
+
+    position: relative;
+
+    width: 150px;
+
+    height: 125px;
+
+    margin: auto;
+
+    top: 45px;
+
+    filter: drop-shadow(
+        0 15px 15px rgba(100,70,70,.15)
+    );
+
+}
+
+
+.gift-body {
+
+    position: absolute;
+
+    left: 10px;
+
+    right: 10px;
+
+    bottom: 0;
+
+    height: 100px;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2.3rem;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f1cad8,
+        #e8b7ca
+    );
+
+    border: 2px solid rgba(180,110,135,.25);
+
+}
+
+
+.gift-ribbon {
+
+    position: absolute;
+
+    z-index: 4;
+
+    width: 25px;
+
+    top: 0;
+
+    bottom: 0;
+
+    left: calc(50% - 12px);
+
+    background: rgba(255,250,235,.75);
+
+}
+
+
+.gift-lid {
+
+    position: absolute;
+
+    z-index: 5;
+
+    top: 5px;
+
+    left: 0;
+
+    right: 0;
+
+    height: 35px;
+
+    border-radius: 7px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    background: #dca7bc;
+
+    box-shadow: 0 5px 8px rgba(90,50,60,.12);
+
+}
+
+
+.gift-lid span {
+
+    font-size: 1.2rem;
+
+    animation: sparkle 1.5s infinite;
+
+}
+
+
+/* ============================================
+ *  BOTÓN PRINCIPAL
+ = *=========================================== */
+
+.main-button {
+
+    position: relative;
+
+    padding: 16px 32px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    font-family: "Quicksand", sans-serif;
+
+    font-size: .85rem;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #d99bb3,
+        #bd7895
+    );
+
+    box-shadow:
+    0 10px 25px rgba(170,100,125,.25);
+
+    transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+
+}
+
+
+.main-button:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+    0 15px 30px rgba(170,100,125,.35);
+
+}
+
+
+.button-flower {
+
+    margin-left: 8px;
+
+}
+
+
+/* ============================================
+ *  CONTENIDO
+ = *=========================================== */
+
+#main-content {
+
+min-height: 100vh;
+
+padding:
+50px
+20px
+40px;
+
+animation: contentAppear 1s ease;
+
+}
+
+
+/* ============================================
+ *  FLORES FLOTANTES
+ = *=========================================== */
+
+.floating-tulips {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+}
+
+
+.floating-tulips span {
+
+    position: absolute;
+
+    font-size: 1.5rem;
+
+    opacity: .35;
+
+    animation:
+    floatingTulip
+    linear infinite;
+
+}
+
+
+.floating-tulips span:nth-child(1) {
+    left: 5%;
+    animation-duration: 13s;
+}
+
+
+.floating-tulips span:nth-child(2) {
+    left: 25%;
+    animation-duration: 18s;
+    animation-delay: 2s;
+}
+
+
+.floating-tulips span:nth-child(3) {
+    left: 70%;
+    animation-duration: 16s;
+    animation-delay: 4s;
+}
+
+
+.floating-tulips span:nth-child(4) {
+    left: 90%;
+    animation-duration: 20s;
+    animation-delay: 1s;
+}
+
+
+/* ============================================
+ *  REPRODUCTOR
+ = *=========================================== */
+
+.music-player {
+
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 10px 10px 15px;
+
+    border-radius: 50px;
+
+    background:
+    rgba(255,250,244,.82);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+    0 8px 30px rgba(80,50,50,.12);
+
+    border:
+    1px solid rgba(255,255,255,.8);
+
+}
+
+
+.music-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.music-note {
+
+    font-size: 1.3rem;
+
+    color: var(--pink-dark);
+
+}
+
+
+.music-info small {
+
+    display: block;
+
+    font-size: .6rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    opacity: .6;
+
+}
+
+
+.music-info strong {
+
+    display: block;
+
+    font-size: .75rem;
+
+}
+
+
+.music-button {
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    color: white;
+
+    background: var(--pink-dark);
+
+    transition: transform .2s ease;
+
+}
+
+
+.music-button:hover {
+
+    transform: scale(1.1);
+
+}
+
+
+/* ============================================
+ *  LIBRO
+ = *=========================================== */
+
+.book-wrapper {
+
+    position: relative;
+
+    width: min(1100px, 94vw);
+
+    margin: 70px auto 20px;
+
+}
+
+
+.book {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 650px;
+
+    border-radius: 8px;
+
+    background: var(--cream);
+
+    box-shadow:
+    0 30px 60px rgba(70,45,45,.18),
+    0 5px 15px rgba(70,45,45,.10);
+
+    overflow: hidden;
+
+}
+
+
+/* ============================================
+ *  PÁGINAS
+ = *=========================================== */
+
+.page {
+
+    display: none;
+
+    min-height: 650px;
+
+    padding: 55px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+    radial-gradient(
+        circle at 10% 10%,
+        rgba(239,199,213,.16),
+                    transparent 25%
+    ),
+    radial-gradient(
+        circle at 90% 90%,
+        rgba(201,221,193,.18),
+                    transparent 25%
+    ),
+    #fffaf1;
+
+}
+
+
+.page.active {
+
+    display: block;
+
+    animation:
+    pageEnter .7s cubic-bezier(.22,.61,.36,1);
+
+}
+
+
+.page.page-exit-left {
+
+    animation:
+    pageExitLeft .45s ease forwards;
+
+}
+
+
+.page.page-exit-right {
+
+    animation:
+    pageExitRight .45s ease forwards;
+
+}
+
+
+.page-inner {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 950px;
+
+    min-height: 540px;
+
+    margin: auto;
+
+}
+
+
+.center-page {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.chapter-number {
+
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    font-size: .65rem;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    color: var(--pink-dark);
+
+}
+
+
+.page h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(2.0rem, 5vw, 4rem);
+
+    line-height: 1;
+
+    font-weight: 600;
+
+    color: var(--brown-dark);
+
+}
+
+
+.page h2 span {
+
+    color: var(--pink-dark);
+
+}
+
+
+.decorative-line {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 20px 0;
+
+    color: var(--pink-dark);
+
+}
+
+
+.decorative-line::before,
+.decorative-line::after {
+
+    content: "";
+
+    width: 70px;
+
+    height: 1px;
+
+    background: var(--pink);
+
+}
+
+
+.large-message {
+
+    max-width: 800px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1.65rem;
+
+    line-height: 1.6;
+
+}
+
+
+.page p {
+
+    line-height: 1.7;
+
+    font-size: .95rem;
+
+}
+
+
+.mini-flower {
+
+    margin-top: 25px;
+
+    font-size: 3rem;
+
+    animation:
+    floatingFlower 3s ease-in-out infinite;
+
+}
+
+
+.signature {
+
+    margin-top: 10px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1.5rem !important;
+
+    color: var(--pink-dark);
+
+}
+
+
+/* ============================================
+ *  DECORACIONES
+ = *=========================================== */
+
+.page-decoration {
+
+    position: absolute;
+
+    z-index: 1;
+
+    opacity: .35;
+
+    font-size: 4rem;
+
+}
+
+
+.top-left {
+
+    top: 15px;
+    left: 20px;
+
+}
+
+
+.bottom-right {
+
+    right: 20px;
+    bottom: 15px;
+
+}
+
+
+/* ============================================
+ *  RECUERDOS
+ = *=========================================== */
+
+.memory-layout {
+
+    display: grid;
+
+    grid-template-columns:
+    minmax(250px, 1fr)
+    minmax(250px, 1fr);
+
+    gap: 50px;
+
+    align-items: center;
+
+    margin-top: 35px;
+
+}
+
+
+.memory-image {
+
+    transform: rotate(-2deg);
+
+}
+
+
+.memory-image img {
+
+    width: 100%;
+
+    max-height: 390px;
+
+    object-fit: contain;
+
+    border-radius: 6px;
+
+    padding: 10px;
+
+    background: white;
+
+    box-shadow:
+    0 10px 30px rgba(70,50,50,.15);
+
+}
+
+
+.image-caption {
+
+    margin-top: 10px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1.1rem;
+
+    text-align: center;
+
+}
+
+
+.memory-text p {
+
+    margin-bottom: 18px;
+
+}
+
+
+.highlight {
+
+    padding: 18px;
+
+    border-left: 3px solid var(--pink);
+
+    background: rgba(239,199,213,.16);
+
+    border-radius: 0 10px 10px 0;
+
+}
+
+
+/* ============================================
+ *  GALERÍA
+ = *=========================================== */
+
+.gallery {
+
+    display: grid;
+
+    grid-template-columns:
+    1.2fr
+    1fr
+    1fr;
+
+    gap: 20px;
+
+    margin-top: 35px;
+
+    align-items: center;
+
+}
+
+
+.gallery-card {
+
+    padding: 10px;
+
+    background: white;
+
+    border-radius: 5px;
+
+    box-shadow:
+    0 10px 25px rgba(80,50,50,.12);
+
+    transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+
+}
+
+
+.gallery-card:hover {
+
+    transform:
+    translateY(-7px)
+    rotate(1deg);
+
+    box-shadow:
+    0 15px 30px rgba(80,50,50,.18);
+
+}
+
+
+.gallery-card:nth-child(1) {
+    transform: rotate(-2deg);
+}
+
+
+.gallery-card:nth-child(2) {
+    transform: rotate(2deg);
+}
+
+
+.gallery-card:nth-child(3) {
+    transform: rotate(-1deg);
+}
+
+
+.gallery-card img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 250px;
+
+    object-fit: contain;
+
+    border-radius: 3px;
+
+}
+
+
+.card-large img {
+
+    height: 340px;
+
+}
+
+
+.gallery-caption {
+
+    padding: 10px 5px 5px;
+
+    text-align: center;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1rem;
+
+}
+
+
+/* ============================================
+ *  MOBILE LEGENDS
+ = *=========================================== */
+
+.gaming-page {
+
+    background:
+    radial-gradient(
+        circle at 50% 20%,
+        rgba(239,199,213,.2),
+                    transparent 40%
+    ),
+    #fffaf1;
+
+}
+
+
+.page-intro {
+
+    max-width: 650px;
+
+    margin:
+    15px
+    auto
+    20px;
+
+    text-align: center;
+
+    opacity: .75;
+
+}
+
+
+.heroes-grid {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-top: 15px;
+
+}
+
+
+.hero-card {
+
+    position: relative;
+
+    height: 340px;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.7),
+                    rgba(239,199,213,.35)
+    );
+
+    border:
+    1px solid rgba(200,150,165,.25);
+
+    transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+
+}
+
+
+.hero-card:hover {
+
+    transform:
+    translateY(-10px)
+    scale(1.02);
+
+    box-shadow:
+    0 15px 35px rgba(130,80,100,.20);
+
+}
+
+
+.hero-card img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    z-index: 2;
+
+    transition:
+    transform .5s ease;
+
+}
+
+
+.hero-card:hover img {
+
+    transform: scale(1.08);
+
+}
+
+
+.hero-glow {
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    left: 50%;
+    top: 35%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+    rgba(245,223,156,.45);
+
+    filter: blur(40px);
+
+    border-radius: 50%;
+
+}
+
+
+.hero-info {
+
+    position: absolute;
+
+    z-index: 4;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 15px;
+
+    color: white;
+
+    text-align: center;
+
+    background:
+    linear-gradient(
+        transparent,
+        rgba(80,50,50,.8)
+    );
+
+    padding-top: 50px;
+
+}
+
+
+.hero-info h3 {
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size: 1.5rem;
+
+}
+
+
+.hero-info p {
+
+    font-size: .7rem;
+
+    line-height: 1.3;
+
+}
+
+
+.gaming-footer {
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size: 1.2rem !important;
+
+}
+
+
+/* ============================================
+ *  MADISON
+ = *=========================================== */
+
+.horror-page {
+
+    color: #e6e0dd;
+
+    background:
+    radial-gradient(
+        circle at center,
+        #403c3a,
+        #181716 70%
+    );
+
+}
+
+
+.horror-page h2,
+.horror-page .chapter-number {
+
+    color: #e8d6c9;
+
+}
+
+
+.horror-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+    repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,.025) 4px
+    );
+
+    pointer-events: none;
+
+}
+
+
+.horror-content {
+
+    display: grid;
+
+    grid-template-columns:
+    1.2fr
+    1fr;
+
+    gap: 40px;
+
+    align-items: center;
+
+    margin-top: 35px;
+
+}
+
+
+.horror-image {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,.7);
+
+}
+
+
+.horror-image img {
+
+    display: block;
+
+    width: 100%;
+
+    max-height: 380px;
+
+    object-fit: contain;
+
+    filter:
+    grayscale(.25)
+    contrast(1.15);
+
+}
+
+
+.scanlines {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+    repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,.04) 0px,
+                              rgba(255,255,255,.04) 1px,
+                              transparent 2px,
+                              transparent 5px
+    );
+
+}
+
+
+.horror-text p {
+
+    margin-bottom: 18px;
+
+    color: #d7cfca;
+
+}
+
+
+.horror-text strong {
+
+    color: #eee2da;
+
+}
+
+
+.glitch-text {
+
+    animation:
+    glitchText 4s infinite;
+
+}
+
+
+.horror-signature {
+
+    display: block;
+
+    margin-top: 20px;
+
+    font-size: 3rem;
+
+    opacity: .5;
+
+}
+
+
+/* ============================================
+ *  TARJETAS DE ÁNIMO
+ = *=========================================== */
+
+.message-cards {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(2, 1fr);
+
+    gap: 18px;
+
+    margin-top: 25px;
+
+}
+
+
+.message-card {
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    background:
+    rgba(255,255,255,.65);
+
+    border:
+    1px solid rgba(220,180,190,.3);
+
+    box-shadow:
+    0 8px 20px rgba(90,60,60,.07);
+
+    transition:
+    transform .3s ease;
+
+}
+
+
+.message-card:hover {
+
+    transform:
+    translateY(-5px);
+
+}
+
+
+.message-icon {
+
+    font-size: 1.8rem;
+
+    margin-bottom: 8px;
+
+}
+
+
+.message-card h3 {
+
+    margin-bottom: 7px;
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size: 1.4rem;
+
+    color: var(--brown-dark);
+
+}
+
+
+.message-card p {
+
+    font-size: .85rem !important;
+
+}
+
+
+.special-card {
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(239,199,213,.45),
+                    rgba(245,223,156,.35)
+    );
+
+}
+
+
+/* ============================================
+ *  AUDIO DE VOZ
+ = *=========================================== */
+
+.voice-decoration {
+
+    margin-top: 35px;
+
+}
+
+
+.voice-circle {
+
+    width: 110px;
+    height: 110px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    font-size: 3rem;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f2d7df,
+        #f7e8bc
+    );
+
+    box-shadow:
+    0 15px 30px rgba(130,90,90,.15);
+
+}
+
+
+.sound-wave {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    height: 45px;
+
+    margin-top: 15px;
+
+}
+
+
+.sound-wave span {
+
+    width: 4px;
+
+    height: 15px;
+
+    border-radius: 5px;
+
+    background: var(--pink-dark);
+
+    animation:
+    soundWave 1s ease-in-out infinite;
+
+    animation-play-state: paused;
+
+}
+
+
+.voice-page.playing
+.sound-wave span {
+
+    animation-play-state: running;
+
+}
+
+
+.sound-wave span:nth-child(2) {
+    animation-delay: .1s;
+}
+
+
+.sound-wave span:nth-child(3) {
+    animation-delay: .2s;
+}
+
+
+.sound-wave span:nth-child(4) {
+    animation-delay: .3s;
+}
+
+
+.sound-wave span:nth-child(5) {
+    animation-delay: .2s;
+}
+
+
+.sound-wave span:nth-child(6) {
+    animation-delay: .1s;
+}
+
+
+.sound-wave span:nth-child(7) {
+    animation-delay: 0s;
+}
+
+
+.voice-description {
+
+    max-width: 500px;
+
+    margin: 20px auto;
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size: 1.3rem !important;
+
+}
+
+
+.voice-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px 25px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    color: white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #d59bb2,
+        #b97d95
+    );
+
+    box-shadow:
+    0 10px 25px rgba(150,90,110,.2);
+
+    font-family:
+    "Quicksand",
+    sans-serif;
+
+    font-weight: 700;
+
+    transition:
+    transform .3s ease;
+
+}
+
+
+.voice-button:hover {
+
+    transform: translateY(-3px);
+
+}
+
+
+.voice-status {
+
+    margin-top: 15px;
+
+    font-size: .7rem !important;
+
+    opacity: .6;
+
+}
+
+
+/* ============================================
+ *  FINAL
+ = *=========================================== */
+
+.final-page {
+
+    background:
+    radial-gradient(
+        circle at center,
+        #fffaf1,
+        #f8e1e8
+    );
+
+}
+
+
+.final-flower {
+
+    font-size: 4rem;
+
+    margin-bottom: 15px;
+
+    animation:
+    floatingFlower 3s ease-in-out infinite;
+
+}
+
+
+.final-message {
+
+    max-width: 650px;
+
+    margin: 10px auto;
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size: 1.3rem !important;
+
+}
+
+
+.final-divider {
+
+    margin: 25px 0;
+
+    letter-spacing: 10px;
+
+    color: var(--pink-dark);
+
+}
+
+
+.final-signature {
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size: 1.25rem !important;
+
+    color: var(--pink-dark);
+
+}
+
+
+.pompom-final {
+
+    margin-top: 15px;
+
+    font-size: 2rem;
+
+}
+
+
+/* ============================================
+ *  CONTROLES
+ = *=========================================== */
+
+.book-control {
+
+    position: absolute;
+
+    z-index: 20;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size: 2rem;
+
+    color: var(--brown);
+
+    background:
+    rgba(255,255,255,.9);
+
+    box-shadow:
+    0 5px 15px rgba(70,50,50,.12);
+
+    transition:
+    transform .2s ease,
+    background .2s ease;
+
+}
+
+
+.book-control:hover {
+
+    transform:
+    translateY(-50%)
+    scale(1.1);
+
+    background: white;
+
+}
+
+
+.previous {
+
+    left: -25px;
+
+}
+
+
+.next {
+
+    right: -25px;
+
+}
+
+
+.book-control:disabled {
+
+    opacity: .25;
+
+    cursor: default;
+
+}
+
+
+.page-counter {
+
+    position: absolute;
+
+    bottom: 15px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 30;
+
+    padding: 5px 15px;
+
+    border-radius: 20px;
+
+    font-size: .7rem;
+
+    background:
+    rgba(255,255,255,.7);
+
+}
+
+
+.navigation-help {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    opacity: .5;
+
+    font-size: .75rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+.navigation-help span {
+
+    margin: 0 5px;
+
+}
+
+
+/* ============================================
+ *  MENSAJE FINAL
+ = *=========================================== */
+
+.ending-message {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+    rgba(60,40,40,.35);
+
+    backdrop-filter: blur(8px);
+
+}
+
+
+.ending-content {
+
+    width: min(90%, 450px);
+
+    padding: 45px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background: #fffaf1;
+
+    box-shadow:
+    0 30px 70px rgba(40,20,20,.25);
+
+    animation:
+    modalAppear .5s ease;
+
+}
+
+
+.ending-content > span {
+
+    font-size: 3rem;
+
+}
+
+
+.ending-content h2 {
+
+    margin: 15px 0;
+
+    font-family:
+    "Cormorant Garamond",
+    serif;
+
+    font-size: 2.3rem;
+
+}
+
+
+.ending-content p {
+
+    margin-bottom: 25px;
+
+}
+
+
+.ending-content button {
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    color: white;
+
+    background: var(--pink-dark);
+
+}
+
+
+/* ============================================
+ *  ANIMACIONES
+ = *=========================================== */
+
+@keyframes floatingFlower {
+
+    0%,100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+
+}
+
+
+@keyframes giftGlow {
+
+    0%,100% {
+        opacity: .5;
+        transform: scale(.9);
+    }
+
+    50% {
+        opacity: .9;
+        transform: scale(1.15);
+    }
+
+}
+
+
+@keyframes sparkle {
+
+    0%,100% {
+        opacity: .5;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+}
+
+
+@keyframes floatingTulip {
+
+    0% {
+
+        transform:
+        translateY(110vh)
+        rotate(0deg);
+
+    }
+
+    100% {
+
+        transform:
+        translateY(-120vh)
+        rotate(360deg);
+
+    }
+
+}
+
+
+@keyframes contentAppear {
+
+    from {
+
+        opacity: 0;
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+
+}
+
+
+@keyframes pageEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+        perspective(1000px)
+        rotateY(8deg)
+        translateX(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+        perspective(1000px)
+        rotateY(0)
+        translateX(0);
+
+    }
+
+}
+
+
+@keyframes pageExitLeft {
+
+    to {
+
+        opacity: 0;
+
+        transform:
+        perspective(1000px)
+        rotateY(-8deg)
+        translateX(-30px);
+
+    }
+
+}
+
+
+@keyframes pageExitRight {
+
+    to {
+
+        opacity: 0;
+
+        transform:
+        perspective(1000px)
+        rotateY(8deg)
+        translateX(30px);
+
+    }
+
+}
+
+
+@keyframes soundWave {
+
+    0%,100% {
+        height: 10px;
+    }
+
+    50% {
+        height: 35px;
+    }
+
+}
+
+
+@keyframes glitchText {
+
+    0%,90%,100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    92% {
+        transform: translateX(-3px);
+        opacity: .7;
+    }
+
+    94% {
+        transform: translateX(3px);
+        opacity: .8;
+    }
+
+}
+
+
+@keyframes modalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+        translateY(20px)
+        scale(.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+}
+
+
+/* ============================================
+ *  RESPONSIVE
+ = *=========================================== */
+
+@media (max-width: 850px) {
+
+    #main-content {
+
+    padding:
+    35px
+    10px;
+
+    }
+
+
+    .book-wrapper {
+
+        margin-top: 75px;
+
+    }
+
+
+    .page {
+
+        padding:
+        45px
+        25px;
+
+    }
+
+
+    .memory-layout {
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+    }
+
+
+    .memory-image {
+
+        max-width: 400px;
+
+        margin: auto;
+
+    }
+
+
+    .gallery {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .card-large {
+
+        grid-column: span 2;
+
+    }
+
+
+    .heroes-grid {
+
+        grid-template-columns:
+        repeat(2, 1fr);
+
+    }
+
+
+    .horror-content {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+    }
+
+
+    .horror-image img {
+
+        max-height: 280px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .opening-content h1 {
+
+        font-size: 4.5rem;
+
+    }
+
+
+    .music-info {
+
+        display: none;
+
+    }
+
+
+    .music-player {
+
+        padding: 8px;
+
+    }
+
+
+    .book {
+
+        min-height: 720px;
+
+    }
+
+
+    .page {
+
+        min-height: 720px;
+
+        padding:
+        40px
+        20px;
+
+    }
+
+
+    .page-inner {
+
+        min-height: 620px;
+
+    }
+
+
+    .page h2 {
+
+        font-size: 2.7rem;
+
+    }
+
+
+    .large-message {
+
+        font-size: 1.2rem;
+
+    }
+
+
+    .gallery {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .card-large {
+
+        grid-column: auto;
+
+    }
+
+
+    .gallery-card img,
+    .card-large img {
+
+        height: 230px;
+
+    }
+
+
+    .heroes-grid {
+
+        grid-template-columns:
+        1fr 1fr;
+
+        gap: 8px;
+
+    }
+
+
+    .hero-card {
+
+        height: 270px;
+
+    }
+
+
+    .hero-info h3 {
+
+        font-size: 1.25rem;
+
+    }
+
+
+    .hero-info p {
+
+        font-size: .6rem;
+
+    }
+
+
+    .message-cards {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .book-control {
+
+        width: 42px;
+        height: 42px;
+
+    }
+
+
+    .previous {
+
+        left: -10px;
+
+    }
+
+
+    .next {
+
+        right: -10px;
+
+    }
+
+
+    .navigation-help {
+
+        display: none;
+
+    }
+
+}
